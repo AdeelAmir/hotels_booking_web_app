@@ -1,0 +1,2151 @@
+{
+	"info": {
+		"_postman_id": "e305113d-c944-40e0-aa84-f99866b17fbc",
+		"name": "Price Room",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26137698"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Forgot Password",
+					"item": [
+						{
+							"name": "Forgot Password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "{{email}}",
+											"description": "Email Address (required)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/forgot-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify OTP Code",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"if (jsonData.hasOwnProperty('access_token')) {\r",
+											"    postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "{{email}}",
+											"description": "Email (required)",
+											"type": "text"
+										},
+										{
+											"key": "otp_code",
+											"value": "4078",
+											"description": "OTP Code (required)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/verify-otp-code",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"verify-otp-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"if (jsonData.hasOwnProperty('access_token')) {\r",
+											"    postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "{{email}}",
+											"description": "Email (required)",
+											"type": "text"
+										},
+										{
+											"key": "newPassword",
+											"value": "12345678A!@#",
+											"description": "New Password (required)",
+											"type": "text"
+										},
+										{
+											"key": "confirmPassword",
+											"value": "12345678A!@#",
+											"description": "Confirm Password (required)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/update-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"update-password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"authToken\", jsonData.accessToken);\r",
+									"postman.setEnvironmentVariable(\"userId\", jsonData.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "{{firstName}}",
+									"description": "First Name (required)",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "{{lastName}}",
+									"description": "Last Name (required)",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"description": "Email Address (required)",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"description": "Password (required)",
+									"type": "text"
+								},
+								{
+									"key": "confirm_password",
+									"value": "{{password}}",
+									"description": "Confirm Password (required)",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "{{phoneNumber}}",
+									"description": "Phone Number (required)",
+									"type": "text"
+								},
+								{
+									"key": "login_type",
+									"value": "email",
+									"description": "Login Types (email,phone,google,facebook) (required)",
+									"type": "text"
+								},
+								{
+									"key": "nationality",
+									"value": "{{nationality}}",
+									"description": "Nationality (required)",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "{{address}}",
+									"description": "Address (required)",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "{{dateOfBirth}}",
+									"description": "Date Of Birth (required)",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "{{gender}}",
+									"description": "Gender (male / female) - (required)",
+									"type": "text"
+								},
+								{
+									"key": "passport_id",
+									"value": "90987",
+									"description": "Passport Id (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"authToken\", jsonData.accessToken);\r",
+									"postman.setEnvironmentVariable(\"userId\", jsonData.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"description": "Email Address (required)",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"description": "Password (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "current_password",
+									"value": "{{password}}",
+									"description": "Current Password (required)",
+									"type": "text"
+								},
+								{
+									"key": "new_password",
+									"value": "Adeel998@#$",
+									"description": "New Password (required)",
+									"type": "text"
+								},
+								{
+									"key": "confirm_password",
+									"value": "Adeel998@#$",
+									"description": "Confirm Password (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/change-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/delete-account",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"delete-account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/deactivate-account",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"deactivate-account"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Supplier",
+					"item": [
+						{
+							"name": "Create Supplier",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "{{supplierName}}",
+											"description": "Supplier Name (required)",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"description": "Status (on/off) - (required)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/supplier/create",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"supplier",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Enable & Disable Supplier",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "supplier_id",
+											"value": "{{supplierId}}",
+											"description": "Supplier Id(required)",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"description": "Status (on/off)-(required)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/supplier/switch",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"supplier",
+										"switch"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Suppliers",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseUrl}}/supplier/all",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"supplier",
+										"all"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update Basic Information",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "{{firstName}}",
+									"description": "First Name (required)",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "{{lastName}}",
+									"description": "Last Name (required)",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "{{phoneNumber}}",
+									"description": "Phone Number (required)",
+									"type": "text"
+								},
+								{
+									"key": "nationality",
+									"value": "{{nationality}}",
+									"description": "Nationality (required)",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "{{address}}",
+									"description": "Address (required)",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "{{dateOfBirth}}",
+									"description": "Date Of Birth (required)",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "{{gender}}",
+									"description": "Gender ( male / female )- (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/update-information",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"update-information"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Travelers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "travelers",
+									"value": "[\n    {\n        \"title\": \"Mr\",\n        \"firstName\": \"Muhammad\",\n        \"lastName\": \"Adeel\"\n    },\n    {\n        \"title\": \"Mr\",\n        \"firstName\": \"Muhammad\",\n        \"lastName\": \"Hamza\"\n    }\n]",
+									"description": "Travelers/Guest (required)"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/update-traveler",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"update-traveler"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "{{firstName}}",
+									"description": "First Name (required)",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "{{lastName}}",
+									"description": "Last Name (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/update-name",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"update-name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"description": "Email (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/update-email",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"update-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/all-users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"all-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/user-detail?user_id={{userId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"user-detail"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "{{userId}}",
+									"description": "User Id (required)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hotel & Booking",
+			"item": [
+				{
+					"name": "Search",
+					"item": [
+						{
+							"name": "Filter Hotels",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "property_name",
+											"value": "beach",
+											"description": "Property Name (optional)",
+											"disabled": true
+										},
+										{
+											"key": "location",
+											"value": "london",
+											"description": "Location (optional)"
+										},
+										{
+											"key": "radius",
+											"value": "10",
+											"description": "Radius (optional)"
+										},
+										{
+											"key": "room_requests",
+											"value": "[{  \"Adults\": 1, \"Children\": 1,  \"Infants\": 0, \"ChildAges\": [7] }]",
+											"description": "Room Requests (required)"
+										},
+										{
+											"key": "duration",
+											"value": "1",
+											"description": "Duration (required)"
+										},
+										{
+											"key": "arrival_date",
+											"value": "2024-11-12",
+											"description": "Arrival Date (required)"
+										},
+										{
+											"key": "end_date",
+											"value": "2024-11-19",
+											"description": "End Date (required)"
+										},
+										{
+											"key": "nationality_id",
+											"value": "0",
+											"description": "Nationality ID (required)"
+										},
+										{
+											"key": "currency_code",
+											"value": "1",
+											"description": "Currency Code (required)"
+										},
+										{
+											"key": "opaque_rates",
+											"value": "false",
+											"description": "Opaque Rates (required)"
+										},
+										{
+											"key": "selling_country",
+											"value": "1",
+											"description": "Selling Country (required)"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/filter-hotels",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"filter-hotels"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fetch Ivector data Index",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "IndexData",
+											"value": "[\n            {\n                \"PropertyID\": 34469,\n                \"propertyName\": \"Sonder The Arts Council\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 9,\n                \"RatingCount\": 309,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Luxury\",\n                    \"Apartments\",\n                    \"Business travel\"\n                ],\n                \"Facilities\": [\n                    \"Elevator/lift\",\n                    \"Concierge services\",\n                    \"Restaurant\",\n                    \"Free Wi-Fi\",\n                    \"Conference Hall\",\n                    \"Smoke-free property\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1ZqTmdBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/1794a1b9f1504162b61c35642c8ada7a.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1284,\n                        51.4971\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 897449,\n                \"propertyName\": \"Hope House Residences by Q Apartments\",\n                \"Rating\": null,\n                \"OverAllRating\": 8,\n                \"RatingCount\": 1,\n                \"HotelTags\": [\n                    \"Apartments\",\n                    \"City centers\",\n                    \"Business\",\n                    \"Family-friendly\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Elevator\",\n                    \"Laundry services\",\n                    \"Safe-deposit box\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1haWEFJQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/017f78704e9a482694e053b6d61dad87.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1291,\n                        51.4968\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 289839,\n                \"propertyName\": \"St. Ermins Hotel, Autograph Collection\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 9,\n                \"RatingCount\": 12525,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"Historic\",\n                    \"Family-Friendly\",\n                    \"Business\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour front desk\",\n                    \"Fitness center\",\n                    \"Sauna\",\n                    \"Business center\",\n                    \"Concierge services\",\n                    \"Restaurant and bar\",\n                    \"Event facilities\",\n                    \"Laundry services\",\n                    \"Parking (chargeable)\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1Vha3dNQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/41a7b331935b4223834cd3979b9a0b8a.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1339,\n                        51.4988\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 381639,\n                \"propertyName\": \"Premier Inn London County Hall\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 8.7,\n                \"RatingCount\": 31338,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Family-friendly\",\n                    \"Mid-range\",\n                    \"Business travel\",\n                    \"Historical sites\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"On-site restaurant\",\n                    \"24-hour reception\",\n                    \"Non-smoking rooms\",\n                    \"Family-friendly accommodations\",\n                    \"Air conditioning\",\n                    \"Luggage storage\",\n                    \"Wheelchair accessible\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1Y4VUFFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/8cb22feac0194ce5a715e9678f3cb6f3.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1181,\n                        51.5025\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 25592,\n                \"propertyName\": \"Great Scotland Yard Hotel, part of Hyatt\",\n                \"Rating\": \"5\",\n                \"OverAllRating\": 8.9,\n                \"RatingCount\": 5975,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"Gastronomic\",\n                    \"Business\",\n                    \"Romantic getaways\",\n                    \"Historical sites\"\n                ],\n                \"Facilities\": [\n                    \"Air conditioning\",\n                    \"24-hour reception\",\n                    \"Elevator/lift\",\n                    \"Smoke-free property\",\n                    \"Free Wi-Fi\",\n                    \"Fitness facilities\",\n                    \"Concierge services\",\n                    \"Restaurant and bar\",\n                    \"Laundry and dry cleaning services\",\n                    \"Room service\",\n                    \"Event facilities\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1h2S2dBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/dea863a929ed4e71a35abdec66f39705.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1261,\n                        51.5064\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 252227,\n                \"propertyName\": \"Premier Inn London Waterloo\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 8.6,\n                \"RatingCount\": 22322,\n                \"HotelTags\": [\n                    \"Family Friendly\",\n                    \"Budget Hotel\",\n                    \"City Centre\",\n                    \"Non-smoking\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"On-site restaurant\",\n                    \"Bar\",\n                    \"Air conditioning\",\n                    \"Family-friendly\",\n                    \"Luggage storage\",\n                    \"Elevator/lift\",\n                    \"Smoke-free property\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1ZiZGdNQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/bfc7a3242bdf4f928850be08894eb02a.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1166,\n                        51.5019\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 474849,\n                \"propertyName\": \"The Grand at Trafalgar Square\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 8.5,\n                \"RatingCount\": 15978,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Business\",\n                    \"Hotels\",\n                    \"Luxury\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Fitness center\",\n                    \"Restaurant\",\n                    \"Bar\",\n                    \"Concierge services\",\n                    \"Business center\",\n                    \"Laundry and dry cleaning services\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1dmbmdFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/ab45370872d6435783c2c3668bd18ac8.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.126,\n                        51.5071\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 286865,\n                \"propertyName\": \"Haymarket Hotel, Firmdale Hotels\",\n                \"Rating\": \"5\",\n                \"OverAllRating\": 9.4,\n                \"RatingCount\": 4427,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"Family-friendly\",\n                    \"Spa\",\n                    \"Theater District\"\n                ],\n                \"Facilities\": [\n                    \"Air conditioning\",\n                    \"24-hour reception\",\n                    \"Elevator/lift\",\n                    \"Currency exchange\",\n                    \"Smoke-free property\",\n                    \"Swimming pool\",\n                    \"Spa center\",\n                    \"Fitness center\",\n                    \"Library\",\n                    \"Concierge services\",\n                    \"Room service\",\n                    \"Free Wi-Fi\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1VTcEFJQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/6d7ec023e42f49bf9418f8571eaa9768.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.131,\n                        51.5082\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 502591,\n                \"propertyName\": \"Rochester Hotel by Blue Orchid\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 7.4,\n                \"RatingCount\": 7764,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Historical sites\",\n                    \"Business\",\n                    \"Mid-range\"\n                ],\n                \"Facilities\": [\n                    \"24-hour reception\",\n                    \"Free Wi-Fi\",\n                    \"Restaurant\",\n                    \"Bar/lounge\",\n                    \"Room service\",\n                    \"Concierge services\",\n                    \"Laundry facilities\",\n                    \"Meeting rooms\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1VKdGdFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/d410085ff06a4994be073c8d63ec0ae3.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1363,\n                        51.4941\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 665412,\n                \"propertyName\": \"Hyatt Regency London Albert Embankment\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 9,\n                \"RatingCount\": 3873,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"City centers\",\n                    \"Business\",\n                    \"Romantic getaways\",\n                    \"Family-friendly\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi throughout the hotel\",\n                    \"24-hour reception\",\n                    \"Fitness center\",\n                    \"Rooftop terrace\",\n                    \"Concierge services\",\n                    \"Dry cleaning and laundry services\",\n                    \"Meeting and conference facilities\",\n                    \"Air conditioning in all rooms\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1hJUGdJQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/d152574bd1c24d5f8fd2fa53f7142a2c.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1214,\n                        51.4918\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 620955,\n                \"propertyName\": \"Page8, Page Hotels\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 9.3,\n                \"RatingCount\": 2913,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Luxury\",\n                    \"Family-friendly\",\n                    \"Boutique\",\n                    \"Business travel\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour reception\",\n                    \"Air conditioning\",\n                    \"Concierge services\",\n                    \"Dry cleaning\",\n                    \"Laundry service\",\n                    \"Luggage storage\",\n                    \"Non-smoking rooms\",\n                    \"Mini-bar\",\n                    \"Safety deposit box\",\n                    \"Coffee shop\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1ZQR1FJQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/fa077e64b5314bc9a683dc20ff1f97ae.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1264,\n                        51.5093\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 576190,\n                \"propertyName\": \"Ruby Lucy Hotel London\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 9.1,\n                \"RatingCount\": 9688,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Boutique\",\n                    \"Mid-range\",\n                    \"Business travel\",\n                    \"Family-friendly\",\n                    \"LGBTQ+ friendly\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Air conditioning\",\n                    \"Bar/Lounge\",\n                    \"24-hour front desk\",\n                    \"Elevator\",\n                    \"Luggage storage\",\n                    \"Safety deposit box\",\n                    \"Express check-in/out\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1V5OUFFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/432263c1f03f436a9c38993e3faf771c.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1125,\n                        51.5046\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 400281,\n                \"propertyName\": \"Wilde Aparthotels London Covent Garden\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 9.5,\n                \"RatingCount\": 8890,\n                \"HotelTags\": [\n                    \"Theater District\",\n                    \"Aparthotel\",\n                    \"City Center\",\n                    \"Modern Amenities\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Air conditioning\",\n                    \"Kitchenettes\",\n                    \"24-hour front desk\",\n                    \"Concierge services\",\n                    \"Laundry services\",\n                    \"Dry cleaning\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1hmTUFZQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/235044b779094443937cc3c349a21456.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.122327,\n                        51.50972\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 1014500620,\n                \"propertyName\": \"Private Studio in Zone 1 Central London\",\n                \"Rating\": null,\n                \"OverAllRating\": 8.4,\n                \"RatingCount\": 38,\n                \"HotelTags\": [\n                    \"Budget\",\n                    \"Central Location\",\n                    \"Cozy\",\n                    \"Convenient\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Fully equipped kitchenette\",\n                    \"Washing machine\",\n                    \"Non-smoking property\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1cxdFFRQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://cdn.worldota.net/t/640x400/content/53/8e/538e57abb0ba55c88db6e87543ee2c54c799376e.jpeg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1325,\n                        51.4909\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 176700,\n                \"propertyName\": \"The Resident Victoria\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 9.2,\n                \"RatingCount\": 4751,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Family-friendly\",\n                    \"Mid-range\",\n                    \"Business travel\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour reception\",\n                    \"Mini-kitchen in every room\",\n                    \"Laundry and dry cleaning services\",\n                    \"Luggage storage\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1gzb1FBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/9e43f256a474482c8513f40cd202315c.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1427,\n                        51.4991\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 131147,\n                \"propertyName\": \"The Stafford London\",\n                \"Rating\": \"5\",\n                \"OverAllRating\": 9.5,\n                \"RatingCount\": 5794,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"Historical\",\n                    \"Romantic\",\n                    \"Business\",\n                    \"Fine Dining\",\n                    \"Central Location\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour room service\",\n                    \"Fitness center\",\n                    \"American Bar\",\n                    \"The Game Bird restaurant\",\n                    \"Concierge services\",\n                    \"Business center\",\n                    \"Laundry and dry-cleaning services\",\n                    \"Historical courtyard\",\n                    \"Air conditioning\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1Y2bFFVQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/cb98fe0c820940d78ee100f43c786bc0.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.14047,\n                        51.50562\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 512727,\n                \"propertyName\": \"The Welcome Inn Victoria\",\n                \"Rating\": \"3.9\",\n                \"OverAllRating\": 6.7,\n                \"RatingCount\": 469,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Mid-range\",\n                    \"Family-friendly\",\n                    \"Boutique\"\n                ],\n                \"Facilities\": [\n                    \"Air conditioning\",\n                    \"24-hour reception\",\n                    \"Free Wi-Fi\",\n                    \"Luggage storage\",\n                    \"Soundproof rooms\",\n                    \"Flat-screen TV\",\n                    \"Hairdryer\",\n                    \"Tour assistance\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1U0dmdFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/c8fde968bec84ac2a80e8a7498c0a20e.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1398,\n                        51.4934\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 328213,\n                \"propertyName\": \"Hotel Indigo London - 1 Leicester Square, an IHG Hotel\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 8.1,\n                \"RatingCount\": 5999,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Luxury\",\n                    \"Boutique\",\n                    \"Business travel\",\n                    \"Romantic getaways\",\n                    \"Theatreland\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour front desk\",\n                    \"Fitness center\",\n                    \"Rooftop bar\",\n                    \"Restaurant\",\n                    \"Conference facilities\",\n                    \"Laundry and dry cleaning services\",\n                    \"Car rental services\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1dGSXdFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/5eb5255fa52c4bf388212520265be8f1.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1307,\n                        51.5106\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 533151,\n                \"propertyName\": \"Victoria Station Hotel\",\n                \"Rating\": \"2.9\",\n                \"OverAllRating\": 5.7,\n                \"RatingCount\": 3508,\n                \"HotelTags\": [\n                    \"Budget-friendly\",\n                    \"City centers\",\n                    \"Family-friendly\",\n                    \"Business travel\"\n                ],\n                \"Facilities\": [\n                    \"24-hour reception\",\n                    \"Smoke-free property\",\n                    \"Heating\",\n                    \"Newspapers\",\n                    \"Express check-in/check-out\",\n                    \"Flat-screen TV\",\n                    \"Cable TV\",\n                    \"Hairdryer\",\n                    \"Dry-cleaning services\",\n                    \"Concierge services\",\n                    \"Safe-deposit box\",\n                    \"Complimentary Wi-Fi\",\n                    \"Coffee/tea making facilities\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1gxendFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/f425e7a5aa9e46de98195030d8d10637.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1416,\n                        51.4949\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 419390,\n                \"propertyName\": \"41 Hotel\",\n                \"Rating\": \"5\",\n                \"OverAllRating\": 9.4,\n                \"RatingCount\": 5789,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"Boutique\",\n                    \"Business\",\n                    \"Romantic getaways\",\n                    \"Pet-friendly\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour reception\",\n                    \"Concierge services\",\n                    \"Executive lounge access\",\n                    \"Business center\",\n                    \"Laundry services\",\n                    \"Minibar in rooms\",\n                    \"Room service\",\n                    \"Airport transportation\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1dWYndFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/6bf19a4a2303402181e6602805d79987.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1436,\n                        51.4982\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 403692,\n                \"propertyName\": \"The Ritz London\",\n                \"Rating\": \"5\",\n                \"OverAllRating\": 8.6,\n                \"RatingCount\": 2994,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"Gastronomic\",\n                    \"Business\",\n                    \"Family-friendly\",\n                    \"Romantic getaways\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour reception\",\n                    \"Air conditioning\",\n                    \"Fitness center\",\n                    \"Spa and wellness services\",\n                    \"Restaurant and bar\",\n                    \"Concierge services\",\n                    \"Laundry and dry cleaning\",\n                    \"Parking available\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1VZWXdFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/a5f5a64c19314a79b661f16550ccbcb7.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1406,\n                        51.5067\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 92,\n                \"propertyName\": \"Hampton by Hilton London Waterloo\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 8.3,\n                \"RatingCount\": 21745,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Family-friendly\",\n                    \"Mid-range\",\n                    \"Business\",\n                    \"Hotel\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Fitness center\",\n                    \"Business center\",\n                    \"Bar and restaurant\",\n                    \"Laundry service\",\n                    \"Elevator access\",\n                    \"Multilingual staff\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1h3QUFBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/0b7c7d0250834487a847e9db15d837c4.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1085,\n                        51.5013\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 231836,\n                \"propertyName\": \"London Leicester Square Hotel\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 8.2,\n                \"RatingCount\": 18835,\n                \"HotelTags\": [\n                    \"Budget-friendly\",\n                    \"City centers\",\n                    \"Family-friendly\",\n                    \"Business travel\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Air conditioning\",\n                    \"On-site restaurant\",\n                    \"Elevator access\",\n                    \"Luggage facilities\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1ZIMGdBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/f1ac23fab4564870ac77c75bbbeac9ae.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1303,\n                        51.5111\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 1071914,\n                \"propertyName\": \"Park Plaza Victoria London\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 8.6,\n                \"RatingCount\": 18968,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Family-friendly\",\n                    \"Business\",\n                    \"Luxury\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Fitness center\",\n                    \"Restaurant\",\n                    \"Bar\",\n                    \"Business center\",\n                    \"Laundry services\",\n                    \"Concierge services\",\n                    \"Elevator\",\n                    \"24-hour reception\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1U4Y1FJQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/22c919d5c97e470190775628b1d78052.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1419,\n                        51.4944\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 458010,\n                \"propertyName\": \"Hotel Indigo London - 1 Leicester Square, an IHG Hotel\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 8.1,\n                \"RatingCount\": 7090,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Business\",\n                    \"Luxury\",\n                    \"Boutique\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Fitness center\",\n                    \"Restaurant\",\n                    \"Bar\",\n                    \"Laundry services\",\n                    \"Concierge services\",\n                    \"Meeting rooms\",\n                    \"24-hour front desk\",\n                    \"Air conditioning\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1Yya0FFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/67c867ba020149fa9b7786827be5ce69.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1302,\n                        51.5112\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 308725,\n                \"propertyName\": \"Apartments In London\",\n                \"Rating\": null,\n                \"OverAllRating\": 10,\n                \"RatingCount\": 1387,\n                \"HotelTags\": [\n                    \"Family-friendly\",\n                    \"Budget-friendly\",\n                    \"Centrally located\",\n                    \"Apartments\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Laundry facilities\",\n                    \"Microwave in rooms\",\n                    \"Flat-screen televisions\",\n                    \"Weekly housekeeping\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1ViRXdFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/52078d7d1cea40d6ac0cc59deb21dd18.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1403,\n                        51.4926\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 55613,\n                \"propertyName\": \"My Apartments Piccadilly Circus\",\n                \"Rating\": null,\n                \"OverAllRating\": 6,\n                \"RatingCount\": 97,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Apartments\",\n                    \"Budget-friendly\",\n                    \"Family-friendly\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Airport transportation (additional charge)\",\n                    \"Non-smoking rooms\",\n                    \"Family room available\",\n                    \"Luggage storage\",\n                    \"Shared lounge/TV area\",\n                    \"Heating\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1d2VWdBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/a1e9235bbe5d42d29972d04bb1e20503.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1332,\n                        51.5112\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 83030,\n                \"propertyName\": \"Chester Hotel\",\n                \"Rating\": \"2\",\n                \"OverAllRating\": 5.5,\n                \"RatingCount\": 9894,\n                \"HotelTags\": [\n                    \"Budget\",\n                    \"Family-run\",\n                    \"Pet-free\",\n                    \"Close to attractions\",\n                    \"Free WiFi\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Daily room service\",\n                    \"24-hour reception\",\n                    \"ATM\",\n                    \"Express check-in/check-out\",\n                    \"Laundry service\",\n                    \"Concierge services\",\n                    \"TV in lobby\",\n                    \"Non-smoking rooms\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1d4N2dNQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/8a034f9f237548e0bfc93bcb4a257254.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1409,\n                        51.4924\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 3235,\n                \"propertyName\": \"City Marque Waterloo Serviced Apartments\",\n                \"Rating\": null,\n                \"OverAllRating\": 6,\n                \"RatingCount\": 41,\n                \"HotelTags\": [\n                    \"City Centre\",\n                    \"Family-friendly\",\n                    \"Apartments\",\n                    \"Budget-friendly\"\n                ],\n                \"Facilities\": [\n                    \"Sauna\",\n                    \"Fully equipped kitchen\",\n                    \"TV and DVD player\",\n                    \"Dining table for 6\",\n                    \"Balcony\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1czQlFBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://cdn.worldota.net/t/640x400/content/e6/f9/e6f9ce8bdf012d3b198dd5a0b99f789b81e6986f.JPEG\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1069,\n                        51.4999\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 495911,\n                \"propertyName\": \"Sidney Hotel London Victoria\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 7.3,\n                \"RatingCount\": 1978,\n                \"HotelTags\": [\n                    \"Budget-friendly\",\n                    \"Hostels\",\n                    \"City centers\",\n                    \"Adults Only\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Shared kitchen\",\n                    \"24-hour front desk\",\n                    \"Luggage storage\",\n                    \"Concierge services\",\n                    \"Bar and restaurant\",\n                    \"Elevator/lift\",\n                    \"Non-smoking rooms\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1dHc0FFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/dad63acdcebb42b78c52ad7d5895bb4b.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1376,\n                        51.4903\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 1022243215,\n                \"propertyName\": \"Chester Hotel\",\n                \"Rating\": \"2\",\n                \"OverAllRating\": 5.6,\n                \"RatingCount\": 8406,\n                \"HotelTags\": [\n                    \"Budget\",\n                    \"Family-friendly\",\n                    \"Central Location\",\n                    \"Convenient Transport\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour reception\",\n                    \"Daily room service\",\n                    \"Private bathrooms\",\n                    \"Digital TV\",\n                    \"Tea and coffee-making facilities\",\n                    \"Non-smoking rooms\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1h1UUFVQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://cdn.worldota.net/t/640x400/content/8c/e9/8ce9042044a4ddef0fac5a1707aeecb96b425050.jpeg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1411,\n                        51.4923\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 71376,\n                \"propertyName\": \"Ham Yard Hotel, Firmdale Hotels\",\n                \"Rating\": \"5\",\n                \"OverAllRating\": 9.5,\n                \"RatingCount\": 5482,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"Boutique\",\n                    \"Spa\",\n                    \"City Center\",\n                    \"Historic\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Restaurant\",\n                    \"Bar\",\n                    \"Fitness center\",\n                    \"Spa\",\n                    \"Sauna\",\n                    \"24-hour reception\",\n                    \"Concierge services\",\n                    \"Luggage storage\",\n                    \"Meeting facilities\",\n                    \"Garden and terrace\",\n                    \"Bowling alley\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1dRNkFNQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/e9853a2ba1b4428983401e38b48dbed8.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1347,\n                        51.5111\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 48794,\n                \"propertyName\": \"Zedwell Piccadilly Circus\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 7.3,\n                \"RatingCount\": 57868,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Budget-friendly\",\n                    \"Hotels\",\n                    \"Business travel\",\n                    \"Family-friendly\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Fitness center\",\n                    \"24-hour reception\",\n                    \"Luggage storage\",\n                    \"Elevator\",\n                    \"Smoke-free property\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1ZsU0FBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/d2c33404964545faaa06ad174d62d9f2.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1343,\n                        51.5113\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 198423,\n                \"propertyName\": \"Melbourne House\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 8.2,\n                \"RatingCount\": 7884,\n                \"HotelTags\": [\n                    \"Family-friendly\",\n                    \"Budget-friendly\",\n                    \"Central location\",\n                    \"Clean rooms\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Smoke-free property\",\n                    \"Heating\",\n                    \"Ticket assistance\",\n                    \"Luggage storage\",\n                    \"Concierge services\",\n                    \"Non-smoking rooms\",\n                    \"Family rooms\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1hkeXdVQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/59f316d53c1e4c418fe4e37caae9ebef.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.13744,\n                        51.49003\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 382445,\n                \"propertyName\": \"One Aldwych\",\n                \"Rating\": \"5\",\n                \"OverAllRating\": 9.5,\n                \"RatingCount\": 3651,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"City centers\",\n                    \"Spa & wellness\",\n                    \"Family-friendly\",\n                    \"Gastronomic\",\n                    \"Business\"\n                ],\n                \"Facilities\": [\n                    \"Air conditioning\",\n                    \"Free Wi-Fi\",\n                    \"Indoor pool\",\n                    \"Spa and wellness center\",\n                    \"Fitness center\",\n                    \"Restaurant and bar\",\n                    \"24-hour reception\",\n                    \"Laundry and dry cleaning services\",\n                    \"Concierge services\",\n                    \"Business center\",\n                    \"Event facilities\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1VyVVFFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/30a9f235c60243fc94a7275ef860e060.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1194,\n                        51.5117\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 239283,\n                \"propertyName\": \"Carlton Hotel\",\n                \"Rating\": \"2\",\n                \"OverAllRating\": 6.3,\n                \"RatingCount\": 9650,\n                \"HotelTags\": [\n                    \"Budget-friendly\",\n                    \"City center\",\n                    \"Family-friendly\",\n                    \"Business travel\"\n                ],\n                \"Facilities\": [\n                    \"24-hour reception\",\n                    \"Wi-Fi (surcharge)\",\n                    \"Ticket assistance\",\n                    \"Luggage storage\",\n                    \"Safe-deposit box\",\n                    \"Concierge services\",\n                    \"Car rental services\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1VGMmdBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/b031cfb2b616419ba383c06e0f6feee7.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1378,\n                        51.4901\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 918985,\n                \"propertyName\": \"Apartments In London\",\n                \"Rating\": null,\n                \"OverAllRating\": 6.8,\n                \"RatingCount\": 285,\n                \"HotelTags\": [\n                    \"Family-friendly\",\n                    \"City center\",\n                    \"Budget-friendly\",\n                    \"Apartments\"\n                ],\n                \"Facilities\": [],\n                \"rid\": \"UzhadEFJSjZOZ1dNWHdJQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://cdn.worldota.net/t/640x400/content/dd/e6/dde6f76c72a41ca943b897a2c1d16123886f206f.jpeg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1417,\n                        51.4922\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 235670,\n                \"propertyName\": \"Premier Inn London Victoria\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 8,\n                \"RatingCount\": 5216,\n                \"HotelTags\": [\n                    \"Budget-friendly\",\n                    \"Family-friendly\",\n                    \"City centers\",\n                    \"Business travel\",\n                    \"Pet-friendly\"\n                ],\n                \"Facilities\": [\n                    \"Air conditioning\",\n                    \"Elevator/lift\",\n                    \"Smoke-free property\",\n                    \"Newspapers\",\n                    \"Non-smoking rooms\",\n                    \"Cable TV\",\n                    \"Laundry service\",\n                    \"Luggage storage\",\n                    \"Free Wi-Fi\",\n                    \"Bar\",\n                    \"Restaurant\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1ZKMWdBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/19d16c4cc7d04602b763f9dae2bf95de.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.143,\n                        51.493\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 1002162416,\n                \"propertyName\": \"My Apartments Piccadilly Circus\",\n                \"Rating\": \"1\",\n                \"OverAllRating\": 8,\n                \"RatingCount\": 5,\n                \"HotelTags\": [\n                    \"Budget\",\n                    \"Apartment\",\n                    \"Family-Friendly\",\n                    \"Centrally Located\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Kitchen facilities including refrigerator, stovetop, and microwave\",\n                    \"Non-smoking property\",\n                    \"Family-friendly rooms available\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1UwM1FJQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://cdn.worldota.net/t/640x400/content/43/99/4399b331d2fc09f090c7574cc840bafcccb0cb35.jpeg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1336,\n                        51.512\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 117380,\n                \"propertyName\": \"Stanley House\",\n                \"Rating\": \"1\",\n                \"OverAllRating\": 6,\n                \"RatingCount\": 1313,\n                \"HotelTags\": [\n                    \"Budget-friendly\",\n                    \"City centers\",\n                    \"Family-friendly\",\n                    \"Business travel\"\n                ],\n                \"Facilities\": [\n                    \"24-hour reception\",\n                    \"Free Wi-Fi\",\n                    \"Non-smoking rooms\",\n                    \"Luggage storage\",\n                    \"Safe-deposit box\",\n                    \"Heating\",\n                    \"Tour assistance\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1YrZkFBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/cf1e77a4f68c4fe3ad20601be66be1d7.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1423,\n                        51.4923\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 1011490613,\n                \"propertyName\": \"Gloucester St. Studios\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 6.8,\n                \"RatingCount\": 30,\n                \"HotelTags\": [\n                    \"Budget\",\n                    \"Self-catering\",\n                    \"City Center\",\n                    \"Family-friendly\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Private bathrooms\",\n                    \"Kitchen facilities in rooms\",\n                    \"Express check-in\",\n                    \"Luggage storage\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1cwbXdRQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/5f942db535fc45639899847e10a99e58.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1401,\n                        51.4906\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 1012420985,\n                \"propertyName\": \"Mornington Hotel London Victoria\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 8.2,\n                \"RatingCount\": 3648,\n                \"HotelTags\": [\n                    \"City Center\",\n                    \"Family Friendly\",\n                    \"Business Hotel\",\n                    \"Tourist Attractions\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour reception\",\n                    \"Non-smoking rooms\",\n                    \"Cable TV\",\n                    \"Iron and board\",\n                    \"Concierge services\",\n                    \"Room service\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1dBckFRQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://cdn.worldota.net/t/640x400/content/9c/4e/9c4ed6689fafd5d97a4c0b2fc20f640874f9ad8b.jpeg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.14,\n                        51.49\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 631932,\n                \"propertyName\": \"Stanley House\",\n                \"Rating\": \"1\",\n                \"OverAllRating\": 8,\n                \"RatingCount\": 1,\n                \"HotelTags\": [\n                    \"Budget-friendly\",\n                    \"Family-friendly\",\n                    \"City centers\",\n                    \"Solo travel\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour reception\",\n                    \"Safe-deposit box\",\n                    \"Non-smoking rooms\",\n                    \"Family room options\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1dzSWdJQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://cdn.worldota.net/t/640x400/content/58/85/58858681653a4eef7bb5aa1ff0a1ab4a543d64bc.jpeg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1429,\n                        51.4917\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 361165,\n                \"propertyName\": \"Swissotel The Howard\",\n                \"Rating\": null,\n                \"OverAllRating\": 8.5,\n                \"RatingCount\": 107,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"City centers\",\n                    \"Business\",\n                    \"Family-friendly\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"Restaurant\",\n                    \"Bar\",\n                    \"Spa center\",\n                    \"Fitness center\",\n                    \"Swimming pool\",\n                    \"Room service\",\n                    \"Laundry services\",\n                    \"Currency exchange\",\n                    \"Conference facilities\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1VkUHdFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/f4205c9fc0834910b255344370dd5e2a.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1143,\n                        51.5113\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 490170,\n                \"propertyName\": \"Eccleston Square Hotel\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 8.8,\n                \"RatingCount\": 3454,\n                \"HotelTags\": [\n                    \"Luxury\",\n                    \"Boutique\",\n                    \"Adults Only\",\n                    \"City Center\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour reception\",\n                    \"Concierge services\",\n                    \"Restaurant\",\n                    \"Bar\",\n                    \"Laundry services\",\n                    \"Dry cleaning services\",\n                    \"Meeting facilities\",\n                    \"Garden\",\n                    \"Elevator\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1ZucXdFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/831c9f6932804905b73d3bad73e3dd2b.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1443,\n                        51.4926\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 212516,\n                \"propertyName\": \"Hashtag South Bank Campus Accommodation\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 5.5,\n                \"RatingCount\": 107,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Budget-friendly\",\n                    \"Adults Only\",\n                    \"Mid-range\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour fitness center\",\n                    \"Laundry facilities\",\n                    \"Non-smoking rooms\",\n                    \"Elevator for accessibility\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1Vpd3dBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/5a348ffa37e449a884e39fdf933a41ab.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.106,\n                        51.5056\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 193268,\n                \"propertyName\": \"Apple Apartments The Strand\",\n                \"Rating\": null,\n                \"OverAllRating\": 8,\n                \"RatingCount\": 114,\n                \"HotelTags\": [\n                    \"City Center\",\n                    \"Luxury Apartments\",\n                    \"Family Friendly\",\n                    \"Business Ready\",\n                    \"Theater District\"\n                ],\n                \"Facilities\": [\n                    \"Wi-Fi\",\n                    \"24-hour reception\",\n                    \"Air conditioning\",\n                    \"Elevator/lift\",\n                    \"Kitchenette with microwave\",\n                    \"Concierge services\",\n                    \"Luggage storage\",\n                    \"Parking available\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1g0OEFFQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/3b5f1f6269d14d22937d6b7a2a237a03.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1165,\n                        51.5125\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 48033,\n                \"propertyName\": \"Green Park Guest House\",\n                \"Rating\": null,\n                \"OverAllRating\": 0,\n                \"RatingCount\": 0,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Family-friendly\",\n                    \"Mid-range\",\n                    \"Boutique\"\n                ],\n                \"Facilities\": [\n                    \"Smoke-free property\",\n                    \"Heating\",\n                    \"Private check-in/check-out\",\n                    \"All Spaces Non-Smoking (public and private)\",\n                    \"Family room available\",\n                    \"Wireless Internet access (surcharge)\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1Y2UndBQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/6717d5ca98244fbda3e71157aa3aa567.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1455,\n                        51.5074\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 743428,\n                \"propertyName\": \"AMANO Covent Garden\",\n                \"Rating\": \"4\",\n                \"OverAllRating\": 7.2,\n                \"RatingCount\": 6083,\n                \"HotelTags\": [\n                    \"City centers\",\n                    \"Pet-friendly\",\n                    \"Boutique\",\n                    \"Business travel\",\n                    \"Romantic getaways\"\n                ],\n                \"Facilities\": [\n                    \"24-hour front desk\",\n                    \"Free Wi-Fi\",\n                    \"Restaurant and bar\",\n                    \"Elevator access\",\n                    \"Concierge services\",\n                    \"Laundry facilities\",\n                    \"Safe-deposit box\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1hvVEFJQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/eb50d7cbb8cc4c9db1632091060ea3dc.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.1204,\n                        51.5137\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            },\n            {\n                \"PropertyID\": 292210,\n                \"propertyName\": \"ibis London Blackfriars\",\n                \"Rating\": \"3\",\n                \"OverAllRating\": 8.1,\n                \"RatingCount\": 26509,\n                \"HotelTags\": [\n                    \"City Center\",\n                    \"Family Friendly\",\n                    \"Non-Smoking\",\n                    \"Modern Amenities\"\n                ],\n                \"Facilities\": [\n                    \"Free Wi-Fi\",\n                    \"24-hour reception\",\n                    \"Restaurant and bar\",\n                    \"Indoor pool\",\n                    \"Fitness center\",\n                    \"Laundry services\",\n                    \"Safe-deposit box\",\n                    \"Concierge services\"\n                ],\n                \"rid\": \"UzhadEFJSjZOZ1UtbFFNQUFBQUFBQT090\",\n                \"MainImageURL\": \"https://int-source-images.s3-eu-west-1.amazonaws.com/images/b0cd10c1ddda4508a0baf035448d17c1.jpg\",\n                \"Location\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                        -0.105,\n                        51.505\n                    ],\n                    \"crs\": {\n                        \"type\": \"name\",\n                        \"properties\": {\n                            \"name\": \"EPSG:4326\"\n                        }\n                    }\n                }\n            }\n        ]",
+											"description": "Location (optional)"
+										},
+										{
+											"key": "propertyIds",
+											"value": "[\n            34469,\n            897449,\n            289839,\n            381639,\n            25592,\n            252227,\n            474849,\n            286865,\n            502591,\n            665412,\n            620955,\n            576190,\n            400281,\n            1014500620,\n            176700,\n            131147,\n            512727,\n            328213,\n            533151,\n            419390,\n            403692,\n            92,\n            231836,\n            1071914,\n            458010,\n            308725,\n            55613,\n            83030,\n            3235,\n            495911,\n            1022243215,\n            71376,\n            48794,\n            198423,\n            382445,\n            239283,\n            918985,\n            235670,\n            1002162416,\n            117380,\n            1011490613,\n            1012420985,\n            631932,\n            361165,\n            490170,\n            212516,\n            193268,\n            48033,\n            743428,\n            292210\n        ]",
+											"description": "Radius (optional)"
+										},
+										{
+											"key": "room_requests",
+											"value": "[{  \"Adults\": 2, \"Children\": 0,  \"Infants\": 0, \"ChildAges\": [] }]",
+											"description": "Room Requests (required)"
+										},
+										{
+											"key": "arrival_date",
+											"value": "2024-11-27",
+											"description": "Arrival Date (required)"
+										},
+										{
+											"key": "end_date",
+											"value": "2024-11-30",
+											"description": "End Date (required)"
+										},
+										{
+											"key": "currency_code",
+											"value": "USD",
+											"description": "Currency Code (required)"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/filter-hotels-index",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"filter-hotels-index"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Hotel Details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/details?hotel_id=539211&currency_code=USD",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"details"
+									],
+									"query": [
+										{
+											"key": "hotel_id",
+											"value": "539211",
+											"description": "Hotel Id (required)"
+										},
+										{
+											"key": "currency_code",
+											"value": "USD",
+											"description": "Currency Code (required)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "IVector Hotel Details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/details-iVector?hotel_id=539211&room_requests=[{  \"Adults\": 1, \"Children\": 0,  \"Infants\": 0, \"ChildAges\": [] }]&arrival_date=2024-11-17&end_date=2024-11-20&currency_code=USD",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"details-iVector"
+									],
+									"query": [
+										{
+											"key": "hotel_id",
+											"value": "539211",
+											"description": "Hotel Id (required)"
+										},
+										{
+											"key": "room_requests",
+											"value": "[{  \"Adults\": 1, \"Children\": 0,  \"Infants\": 0, \"ChildAges\": [] }]",
+											"description": "Room Requests (required)"
+										},
+										{
+											"key": "arrival_date",
+											"value": "2024-11-17",
+											"description": "Arrival Date (required)"
+										},
+										{
+											"key": "end_date",
+											"value": "2024-11-20",
+											"description": "End Date (required)"
+										},
+										{
+											"key": "currency_code",
+											"value": "USD",
+											"description": "Currency Code (required)"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Booking",
+					"item": [
+						{
+							"name": "Property Checkout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Price Room",
+											"description": "Titel (required)",
+											"type": "text"
+										},
+										{
+											"key": "lead_customer",
+											"value": "{\n  \"CustomerTitle\": \"Mr\",\n  \"CustomerFirstName\": \"Test\",\n  \"CustomerLastName\": \"Test\",\n  \"DateOfBirth\": \"1973-03-02\",\n  \"CustomerAddress1\": \"123 William Street\",\n  \"CustomerAddress2\": \"\",\n  \"CustomerTownCity\": \"New York\",\n  \"CustomerCounty\": \"New York County\",\n  \"CustomerPostcode\": \"10038\",\n  \"CustomerBookingCountryCode\": \"US\",\n  \"CustomerPhone\": \"+34623828832\",\n  \"CustomerMobile\": \"+34623828832\",\n  \"CustomerEmail\": \"ambroise@leadshare.io\"\n}",
+											"description": "Lead Customer (required)",
+											"type": "text"
+										},
+										{
+											"key": "total_rooms",
+											"value": "3",
+											"description": "Total Rooms (required)",
+											"type": "text"
+										},
+										{
+											"key": "room_details",
+											"value": "[\n    {\n        \"BookingToken\": \"uunI/bPg\",\n        \"RoomBookingToken\": \"mO-X7\",\n        \"SupplierReference\": \"173802701_1_1020_1\",\n        \"GuestDetails\": [\n            {\n                \"Type\": \"Adult\",\n                \"Title\": \"Mr\",\n                \"FirstName\": \"Test\",\n                \"LastName\": \"Tester\",\n                \"DateOfBirth\": \"1990-05-05\"\n            }\n        ]\n    },\n    {\n        \"BookingToken\": \"uunI/bPg\",\n        \"RoomBookingToken\": \")^oeI#Z\",\n        \"SupplierReference\": \"173802701_1_1020_1\",\n        \"GuestDetails\": [\n            {\n                \"Type\": \"Adult\",\n                \"Title\": \"Mrs\",\n                \"FirstName\": \"Test\",\n                \"LastName\": \"Tester\",\n                \"DateOfBirth\": \"1990-05-05\"\n            }\n        ]\n    },\n    {\n        \"BookingToken\": \"uunI/bPg*\",\n        \"RoomBookingToken\": \")^oeI#Z\",\n        \"SupplierReference\": \"173802701_1_1020_2\",\n        \"GuestDetails\": [\n            {\n                \"Type\": \"Adult\",\n                \"Title\": \"Mrs\",\n                \"FirstName\": \"Test\",\n                \"LastName\": \"Tester\",\n                \"DateOfBirth\": \"1990-05-05\"\n            }\n        ]\n    }\n]\n",
+											"description": "Booking (required)",
+											"type": "text"
+										},
+										{
+											"key": "special_request",
+											"value": "Smooking Room, Long Bed",
+											"description": "Special Request (multiple) - (optional)",
+											"type": "text"
+										},
+										{
+											"key": "room_charges",
+											"value": "25",
+											"description": "Room Chrges (required)",
+											"type": "text"
+										},
+										{
+											"key": "total_discount",
+											"value": "0",
+											"description": "Total Discount (required)",
+											"type": "text"
+										},
+										{
+											"key": "price_after_discount",
+											"value": "25",
+											"description": "Price After Discount (required)",
+											"type": "text"
+										},
+										{
+											"key": "tax_fees",
+											"value": "0",
+											"description": "Tax Fees (required)",
+											"type": "text"
+										},
+										{
+											"key": "payable_amount",
+											"value": "25",
+											"description": "Payable Amount (required)",
+											"type": "text"
+										},
+										{
+											"key": "check_in",
+											"value": "2024-09-01T12:00:00",
+											"description": "Check In (required)",
+											"type": "text"
+										},
+										{
+											"key": "check_out",
+											"value": "2024-09-02T00:00:00",
+											"description": "Check Out (required)",
+											"type": "text"
+										},
+										{
+											"key": "total_guest",
+											"value": "3",
+											"description": "Total Guest (required)",
+											"type": "text"
+										},
+										{
+											"key": "payment_type",
+											"value": "Visa",
+											"description": "Payment Type (Visa/Master Card/Debit Card)-(required)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "card_holder_name",
+											"value": "{{firstName}}{{lastName}}",
+											"description": "Card Holder Name (required)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "card_number",
+											"value": "0054564578667",
+											"description": "Card Number(required)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "expiry_date",
+											"value": "02-11-2027",
+											"description": "Expiry Date (required)",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "cvc",
+											"value": "456",
+											"description": "CVC (required)",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/property-checkout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"property-checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Property PreBook",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "bookingToken",
+											"value": "uunI/bPg*",
+											"description": "Booking Token (required)",
+											"type": "text"
+										},
+										{
+											"key": "roomBookings",
+											"value": "[\n    {\n        \"RoomBookingToken\": \">1Qp!       0;                        a04#\",\n        \"SupplierReference1\": \"173802701_1_1020_1\",\n        \"SupplierReference2\": \"\",\n        \"OptionalSupplements\": []\n    }\n]",
+											"description": "Room Bookings (required)",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/property-pre-book",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"property-pre-book"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Property Book",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "bookingReference",
+											"value": "WB20240704R510",
+											"description": "Booking Reference (required)",
+											"type": "text"
+										},
+										{
+											"key": "bookingToken",
+											"value": "uunI/bPg*",
+											"description": "Booking Token",
+											"type": "text"
+										},
+										{
+											"key": "supplierReference1",
+											"value": "173802701_1_1020_1",
+											"description": "Supplier Reference1",
+											"type": "text"
+										},
+										{
+											"key": "supplierReference2",
+											"value": "",
+											"description": "Supplier Reference2",
+											"type": "text"
+										},
+										{
+											"key": "roomBookings",
+											"value": "[\n    {\n        \"RoomBookingToken\": \">1Qp!       0;                        a04#\",\n        \"SupplierReference\": \"173802701_1_1020_1\",\n        \"GuestDetails\": [\n            {\n                \"Type\": \"Adult\",\n                \"Title\": \"Mr\",\n                \"FirstName\": \"Test\",\n                \"LastName\": \"Tester\",\n                \"DateOfBirth\": \"1990-05-05\"\n            },\n            {\n                \"Type\": \"Adult\",\n                \"Title\": \"Mrs\",\n                \"FirstName\": \"Test\",\n                \"LastName\": \"Tester\",\n                \"DateOfBirth\": \"1995-05-05\"\n            }\n        ]\n    }\n]\n",
+											"description": "Room Bookings",
+											"type": "text"
+										},
+										{
+											"key": "leadCustomer",
+											"value": "{\n  \"CustomerTitle\": \"Mr\",\n  \"CustomerFirstName\": \"Test\",\n  \"CustomerLastName\": \"Test\",\n  \"DateOfBirth\": \"1973-03-02\",\n  \"CustomerAddress1\": \"123 William Street\",\n  \"CustomerAddress2\": \"\",\n  \"CustomerTownCity\": \"New York\",\n  \"CustomerCounty\": \"New York County\",\n  \"CustomerPostcode\": \"10038\",\n  \"CustomerBookingCountryCode\": \"US\",\n  \"CustomerPhone\": \"+34623828832\",\n  \"CustomerMobile\": \"+34623828832\",\n  \"CustomerEmail\": \"ambroise@leadshare.io\"\n}",
+											"description": "Lead Customer",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/property-book",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"property-book"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Property Get Cancel Fees",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "supplierBookingReference",
+										"value": "",
+										"description": "Supplier Booking Reference",
+										"type": "text"
+									},
+									{
+										"key": "bookingToken",
+										"value": "",
+										"description": "Booking Token",
+										"type": "text"
+									},
+									{
+										"key": "supplierReference1",
+										"value": "",
+										"description": "Supplier Reference 1",
+										"type": "text"
+									},
+									{
+										"key": "supplierReference2",
+										"value": "",
+										"description": "Supplier Reference 2",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "supplierBookingReference",
+											"value": "",
+											"description": "Supplier Booking Reference",
+											"type": "text"
+										},
+										{
+											"key": "bookingToken",
+											"value": "",
+											"description": "Booking Token",
+											"type": "text"
+										},
+										{
+											"key": "supplierReference1",
+											"value": "",
+											"description": "Supplier Reference 1",
+											"type": "text"
+										},
+										{
+											"key": "supplierReference2",
+											"value": "",
+											"description": "Supplier Reference 2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/property-get-cancel-fees",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"property-get-cancel-fees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Property Cancel",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "booking_id",
+											"value": "{{bookingId}}",
+											"description": "Booking Id (required)"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/property-cancel",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"property-cancel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Bookings",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/user-bookings?status=completed&page=1&no_of_records={{noOfRecords}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"user-bookings"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "completed",
+											"description": "Status (pending/completed/cancelled)(optional)"
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page (required)"
+										},
+										{
+											"key": "no_of_records",
+											"value": "{{noOfRecords}}",
+											"description": "No Of Records (required)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Bookings",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/all-bookings?page=1&no_of_records={{noOfRecords}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"all-bookings"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page (required)"
+										},
+										{
+											"key": "no_of_records",
+											"value": "{{noOfRecords}}",
+											"description": "No Of Records (required)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Booking Details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{authToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseUrl}}/hotel/booking-detail?booking_id={{bookingId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"hotel",
+										"booking-detail"
+									],
+									"query": [
+										{
+											"key": "booking_id",
+											"value": "{{bookingId}}",
+											"description": "Booking Id (required)"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Dashboard Statistics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/dashboard",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Setting",
+			"item": [
+				{
+					"name": "Update Settings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cancellation_date_margin",
+									"value": "28",
+									"description": "Cancellation Date Margin (required)",
+									"type": "text"
+								},
+								{
+									"key": "exchange_rate_frequency",
+									"value": "15",
+									"description": "Exchange Rate Frequency (required)",
+									"type": "text"
+								},
+								{
+									"key": "admin_markup",
+									"value": "2.5",
+									"description": "Admin Markup (required)",
+									"type": "text"
+								},
+								{
+									"key": "stripe_fee",
+									"value": "2",
+									"description": "Stripr Fee (required)",
+									"type": "text"
+								},
+								{
+									"key": "ivector_fee",
+									"value": "3",
+									"description": "iVector Fee (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/setting/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"setting",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Commisions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/setting/all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"setting",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Currencies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/setting/get-currency",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"setting",
+								"get-currency"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Helper Api",
+			"item": [
+				{
+					"name": "Turncate Container",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/hotel/delete-bookings",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hotel",
+								"delete-bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hotel Geo Distance Search",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "Bk3wrCTlWvb10B7wTch1sxRe70lxzycVDzdj4GRzPWAzSeAfFLDQ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"search\": \"*\",\r\n    \"filter\": \"geo.distance(Geography/Location, geography'POINT(25.110134262576764,67.27049466572507)') le 100\",\r\n    \"select\": \"PropertyID,PropertyName,Geography/Location\",\r\n    \"count\": true\r\n}"
+						},
+						"url": {
+							"raw": "https://ivhotels.search.windows.net/indexes/ivhotelsindex/docs/search?api-version=2023-11-01",
+							"protocol": "https",
+							"host": [
+								"ivhotels",
+								"search",
+								"windows",
+								"net"
+							],
+							"path": [
+								"indexes",
+								"ivhotelsindex",
+								"docs",
+								"search"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "2023-11-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Property Search",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "arrivalDate",
+									"value": "2024-10-29T00:00:00",
+									"description": "Arrival Date (required)",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "1",
+									"description": "Duration (required)",
+									"type": "text"
+								},
+								{
+									"key": "properties",
+									"value": "[661576]",
+									"description": "Properties (required)",
+									"type": "text"
+								},
+								{
+									"key": "roomRequests",
+									"value": "[ {  \"Adults\": 2,   \"Children\": 0,  \"Infants\": 0,  \"ChildAges\": [] }]",
+									"description": "Room Requests (required)",
+									"type": "text"
+								},
+								{
+									"key": "nationalityID",
+									"value": "0",
+									"description": "Nationality ID (required)",
+									"type": "text"
+								},
+								{
+									"key": "currencyCode",
+									"value": "1",
+									"description": "Currency Code (required)",
+									"type": "text"
+								},
+								{
+									"key": "opaqueRates",
+									"value": "false",
+									"description": "Opaque Rates (required)",
+									"type": "text"
+								},
+								{
+									"key": "sellingCountry",
+									"value": "1",
+									"description": "Selling Country (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/hotel/property-search",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hotel",
+								"property-search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Hotels",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/hotel/search?hotel_name=Ponta Grande Carvoeiro",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hotel",
+								"search"
+							],
+							"query": [
+								{
+									"key": "hotel_name",
+									"value": "Ponta Grande Carvoeiro",
+									"description": "Hotel Name (required)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Seller Hotels",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/hotel/seller-hotels?seller_name={{sellerName}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hotel",
+								"seller-hotels"
+							],
+							"query": [
+								{
+									"key": "seller_name",
+									"value": "{{sellerName}}",
+									"description": "Seller Name (required)"
+								},
+								{
+									"key": "last_modify_date",
+									"value": "2021-06-01",
+									"description": "Last Modify Date (optional)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "role",
+									"value": "1",
+									"description": "Role (required)",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Admin",
+									"description": "Name (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/setting/role-create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"setting",
+								"role-create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Hotels From Index",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "ocloBm1loZndYVbCwfcIpiwzBKON3CZOas97yYnUkgAzSeDGl7Cq",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/hotel/search?latitude=51.46733534486676&longitude=-0.09089487622717483&radius=100",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"hotel",
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "place",
+									"disabled": true
+								},
+								{
+									"key": "latitude",
+									"value": "51.46733534486676"
+								},
+								{
+									"key": "longitude",
+									"value": "-0.09089487622717483"
+								},
+								{
+									"key": "radius",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Create Stripe Payment Intent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "78.99",
+									"description": "Amount (required)",
+									"type": "text"
+								},
+								{
+									"key": "currency",
+									"value": "usd",
+									"description": "Currency (required)",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "{{firstName}}{{lastName}}",
+									"description": "Name (required)",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"description": "Email (required)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/payment/create-payment-intent",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"payment",
+								"create-payment-intent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

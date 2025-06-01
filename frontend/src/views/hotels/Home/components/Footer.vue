@@ -1,0 +1,195 @@
+<template>
+  <footer class="bg-dark pt-5">
+    <b-container>
+      <b-row class="g-4">
+        <b-col lg="3">
+          <router-link :to="{ name: 'hotels.home' }">
+            <div class="d-flex align-items-center">
+              <img class="h-50px" :src="logoLight" alt="logo" />
+              <span class="ml-2 mt-1 text-white ">Price Room</span>
+            </div>
+          </router-link>
+          <p class="my-3 text-body-secondary">
+            17.5 million hotel rooms and every one is negotiable. Don't like the rate? Negotiate.
+          </p>
+          <!-- <p class="mb-2">
+            <a href="#" class="text-body-secondary text-primary-hover">
+              <BIconTelephone class="me-2" />
+              +1234 568 963
+            </a>
+          </p> -->
+          <p class="mb-0">
+            <a href="mailto:support@priceroom.co" class="text-body-secondary text-primary-hover">
+              <BIconEnvelope class="me-2" />
+              support@priceroom.co
+            </a>
+          </p>
+        </b-col>
+
+        <b-col lg="8" class="ms-auto">
+          <b-row class="g-4">
+            <b-col v-for="(item, idx) in footerLinks" :key="idx" cols="6" md="3">
+              <!-- <h5 class="text-white mb-2 mb-md-4">{{ item.title }}</h5> -->
+              <ul class="nav flex-column text-primary-hover">
+                <li v-for="(child, idx) in item.items" :key="idx" class="nav-item">
+                  <router-link class="nav-link text-body-secondary" id="back-to-top"
+                    :to="{ name: child.link?.name, params: child.link?.params }">
+                    <font-awesome-icon v-if="child.icon" :icon="child.icon" class="me-2" />
+                    {{ child.name }}
+                  </router-link>
+                </li>
+              </ul>
+            </b-col>
+            <b-col sm="7" md="6" lg="5">
+              <span class="text-white mb-2 cursor-pointer" @click.prevent="navigateToRoute('/help/privacy-policy')">
+                Payment & Security</span>
+              <ul class="list-inline mb-3 mt-3">
+                <!-- <li class="list-inline-item">
+                  <a href="#"><img :src="paypal" class="h-30px" alt="" /></a>
+                </li> -->
+                <li class="list-inline-item">
+                  <a href="#"><img :src="visa" class="h-30px" alt="" /></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#"><img :src="mastercard" class="h-30px" alt="" /></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#"><img :src="expresscard" class="h-30px" alt="" /></a>
+                </li>
+              </ul>
+              <!-- <b-col sm="5" md="6" lg="3" class="text-sm-end"> -->
+              <span class="text-white mb-2 ">Follow us on</span>
+              <ul class="list-inline mb-0 mt-3 hstack gap-1 justify-content-start">
+                <li class="list-inline-item">
+                  <a class="btn btn-sm px-2 bg-facebook mb-0" href="https://www.facebook.com/" target="_blank"
+                    rel="noopener noreferrer">
+                    <font-awesome-icon :icon="faFacebook" class="fab fa-fw" />
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="btn btn-sm shadow px-2 bg-instagram mb-0" href="https://www.instagram.com/" target="_blank"
+                    rel="noopener noreferrer">
+                    <font-awesome-icon :icon="faInstagram" class="fab fa-fw" />
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="btn btn-sm shadow px-2 bg-twitter mb-0" href="https://www.twitter.com/" target="_blank"
+                    rel="noopener noreferrer">
+                    <font-awesome-icon :icon="faXTwitter" class="fab fa-fw" />
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="btn btn-sm shadow px-2 bg-linkedin mb-0" href="https://www.linkedin.com/" target="_blank"
+                    rel="noopener noreferrer">
+                    <font-awesome-icon :icon="faLinkedinIn" class="fab fa-fw" />
+                  </a>
+                </li>
+              </ul>
+              <!-- </b-col> -->
+            </b-col>
+          </b-row>
+        </b-col>
+      </b-row>
+
+      <!-- <b-row class="g-4 justify-content-between mt-0 mt-md-2">
+        <b-col sm="7" md="6" lg="4">
+          <h5 class="text-white mb-2">Payment & Security</h5>
+          <ul class="list-inline mb-0 mt-3">
+            <li class="list-inline-item">
+              <a href="#"><img :src="paypal" class="h-30px" alt="" /></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#"><img :src="visa" class="h-30px" alt="" /></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#"><img :src="mastercard" class="h-30px" alt="" /></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#"><img :src="expresscard" class="h-30px" alt="" /></a>
+            </li>
+          </ul>
+        </b-col>
+
+        <b-col sm="5" md="6" lg="3" class="text-sm-end">
+          <h5 class="text-white mb-2">Follow us on</h5>
+          <ul class="list-inline mb-0 mt-3 hstack gap-1 justify-content-end">
+            <li class="list-inline-item">
+              <a class="btn btn-sm px-2 bg-facebook mb-0" href="#">
+                <font-awesome-icon :icon="faFacebook" class="fab fa-fw" />
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn btn-sm shadow px-2 bg-instagram mb-0" href="#">
+                <font-awesome-icon :icon="faInstagram" class="fab fa-fw" />
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn btn-sm shadow px-2 bg-twitter mb-0" href="#">
+                <font-awesome-icon :icon="faXTwitter" class="fab fa-fw" />
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a class="btn btn-sm shadow px-2 bg-linkedin mb-0" href="#">
+                <font-awesome-icon :icon="faLinkedinIn" class="fab fa-fw" />
+              </a>
+            </li>
+          </ul>
+        </b-col>
+      </b-row> -->
+
+      <hr class="mt-4 mb-0" />
+
+      <b-row>
+        <b-container>
+          <div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-lg-start">
+            <div class="text-body-secondary text-primary-hover">
+              Copyright ©2023 The PriceRoom Co Ltd . Developed by
+              <a :href="developedByLink" class="text-body-secondary" target="_blank">{{ developedBy }}</a>.
+            </div>
+            <div class="nav mt-2 mt-lg-0 cursor-pointer">
+              <ul class="list-inline text-primary-hover mx-auto mb-0">
+                <li class="list-inline-item me-0">
+                  <a class="nav-link text-body-secondary py-1"
+                    @click.prevent="navigateToRoute('/help/privacy-policy')">Privacy policy</a>
+                </li>
+                <li class="list-inline-item me-0">
+                  <a class="nav-link text-body-secondary py-1" @click.prevent="navigateToRoute('/help/services')">Terms
+                    and conditions</a>
+                </li>
+                <li class="list-inline-item me-0">
+                  <a class="nav-link text-body-secondary py-1 pe-0"
+                    @click.prevent="navigateToRoute('/help/refund-policy')">Refund policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </b-container>
+      </b-row>
+    </b-container>
+  </footer>
+</template>
+
+<script setup lang="ts">
+// import logoLight from '@/assets/images/logo-light.svg'
+import logoLight from "@/assets/images/final logo.png";
+import paypal from '@/assets/images/element/paypal.svg'
+import visa from '@/assets/images/element/visa.svg'
+import mastercard from '@/assets/images/element/mastercard.svg'
+import expresscard from '@/assets/images/element/expresscard.svg'
+
+import { BIconTelephone, BIconEnvelope } from 'bootstrap-icons-vue'
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+  faLinkedinIn,
+  faXTwitter
+} from '@fortawesome/free-brands-svg-icons'
+
+import { footerLinks, topLinks } from '@/assets/data/footer-items'
+import { currentYear, developedBy, developedByLink } from '@/helpers/constants'
+import router from "@/router";
+const navigateToRoute = (route: string) => {
+  router.push(route);
+};
+</script>
